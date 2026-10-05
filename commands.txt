@@ -1,0 +1,19 @@
+cd /d D:\devops-b2329243
+mkdir site
+docker build -t devops-b-2329243:v1 .
+docker images
+docker run -d --name devops-b-2329243 -p 8080:80 devops-b-2329243:v1
+docker ps
+minikube start --driver=docker
+minikube status
+minikube image load devops-b-2329243:v1
+kubectl apply -f deployment.yaml
+kubectl get pods
+kubectl get deployment
+kubectl apply -f service.yaml
+kubectl get service
+minikube service devops-b-2329243
+kubectl scale deployment devops-b-2329243 --replicas=2
+kubectl get pods
+kubectl get deployment
+kubectl get service
